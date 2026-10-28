@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin / Doctor Panel | RELIEF</title><link rel="stylesheet" href="../assets/css/professional-pages.css"><link rel="stylesheet" href="../assets/css/admin-corrections.css">    
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin / Doctor Panel | RELIEF</title><link rel="stylesheet" href="../assets/css/professional-pages.css"><link rel="stylesheet" href="../assets/css/admin-corrections.css"><link rel="stylesheet" href="../assets/css/health-events.css">    
     <!-- Vercel Web Analytics -->
     <script src="../assets/js/vercel-analytics.js"></script>
 </head><body>
@@ -25,12 +25,28 @@
 <ol id="correction-log" class="correction-log"></ol>
 <details><summary>Approved changes for maintainers (JSON)</summary><p class="muted">Apply these to assets/data/facilities.json by hand, with the facility verification steps. The public page never applies them by itself.</p><pre id="correction-patch" class="correction-patch">[]</pre></details>
 </section>
+<section class="card" id="event-moderation" aria-labelledby="event-moderation-heading" style="margin-top:16px">
+<h2 id="event-moderation-heading">Health event submissions</h2>
+<p class="muted">Health camps, vaccination drives, screenings and outreach programmes sent in by organisers. A submission is shown to the public only as "Unverified" until you confirm it. Confirm only after checking with the organiser or an official notice.</p>
+<p class="events-note" id="event-moderation-demo-note" role="note" hidden>Demo mode: this queue is stored only in this browser and anyone using this page can confirm or reject. Real moderation needs the review service and moderator accounts.</p>
+<div id="event-moderation-controls" hidden>
+<div class="row">
+<div><label for="event-moderator-name">Your name (written to the decision log)</label><input id="event-moderator-name" maxlength="60" autocomplete="off"></div>
+<div><label for="event-status-filter">Show</label><select id="event-status-filter"><option value="pending">Waiting for review</option><option value="confirmed">Confirmed</option><option value="rejected">Rejected</option><option value="all">All</option></select></div>
+</div>
+<button class="btn btn-primary" id="event-refresh" type="button" style="margin-top:10px">Refresh</button>
+</div>
+<p id="event-moderation-message" role="status" aria-live="polite" data-tone=""></p>
+<div id="event-queue" aria-live="polite"></div>
+</section>
 <section class="alert" style="margin-top:16px">Data shown is demo-safe and anonymized for hackathon presentation.</section></main>
 <footer class="wrap footer">Access should be role-protected in production using server-side authorization.</footer>
     <script src="../assets/js/auth-mode.js"></script>
     <script src="../assets/js/api.js"></script>
     <script src="../assets/js/facility-corrections.js"></script>
     <script src="../assets/js/facility-corrections-ui.js"></script>
+    <script src="../assets/js/health-events.js"></script>
+    <script src="../assets/js/health-events-ui.js"></script>
     <script src="../assets/js/i18n.js"></script>
     <script src="../assets/js/app-enhancements.js"></script>
 </body></html>

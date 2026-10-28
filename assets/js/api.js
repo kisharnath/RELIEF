@@ -493,6 +493,38 @@ const ReliefAPI = (function() {
     const reviewFacilityCorrection = (id, decision) =>
         backendRequest('/v1/facility-corrections/' + encodeURIComponent(id) + '/decision', { method: 'POST', body: decision });
 
+    // Health events (camps, vaccination drives, screenings, outreach). Contract: docs/HEALTH_EVENTS.md
+    // As with corrections, the backend decides who may moderate and sets every status itself.
+
+    /**
+     * Public list of events. GET {backend}/v1/health-events
+     * Resolves with an array (or { events: [] }). Rejected submissions must never be included.
+     */
+    const listHealthEvents = () => backendRequest('/v1/health-events');
+
+    /**
+     * Organiser submission. It always starts unverified. POST {backend}/v1/health-events/submissions
+     * event: { title, type, startsAt, endsAt, district, venue, organiser, services, eligibility,
+     *          contactPhone, contactEmail, sourceUrl }
+     */
+    const submitHealthEvent = (event) =>
+        backendRequest('/v1/health-events/submissions', { method: 'POST', body: event });
+
+    /**
+     * Moderators only. GET {backend}/v1/health-events/submissions?status=pending|confirmed|rejected
+     */
+    const listHealthEventSubmissions = (filter = {}) => {
+        const query = filter.status ? '?status=' + encodeURIComponent(filter.status) : '';
+        return backendRequest('/v1/health-events/submissions' + query);
+    };
+
+    /**
+     * Moderators only. POST {backend}/v1/health-events/submissions/{id}/decision
+     * decision: { decision: 'approve' | 'reject', reason, evidence }. A decision is final.
+     */
+    const reviewHealthEventSubmission = (id, decision) =>
+        backendRequest('/v1/health-events/submissions/' + encodeURIComponent(id) + '/decision', { method: 'POST', body: decision });
+
     // Public API
     return {
         // Authentication
@@ -529,7 +561,13 @@ const ReliefAPI = (function() {
         // Facility corrections (moderated, see docs/FACILITY_CORRECTIONS.md)
         submitFacilityCorrection,
         listFacilityCorrections,
-        reviewFacilityCorrection
+        reviewFacilityCorrection,
+
+        // Health events (moderated, see docs/HEALTH_EVENTS.md)
+        listHealthEvents,
+        submitHealthEvent,
+        listHealthEventSubmissions,
+        reviewHealthEventSubmission
     };
 })();
 

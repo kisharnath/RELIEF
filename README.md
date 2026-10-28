@@ -72,6 +72,10 @@ A dedicated module for exploring hospital information and relevant healthcare re
 
 A pharmacy-related module intended to help users locate or explore pharmacy resources.
 
+### 📅 Health Camps and Community Events
+
+Find health camps, vaccination drives, screening events and outreach programmes by date and location. Organisers can submit events; a submission stays marked "Unverified" until a moderator confirms it, and past events are archived. See [docs/HEALTH_EVENTS.md](docs/HEALTH_EVENTS.md).
+
 ### 🚑 Emergency and Ambulance Access
 
 Emergency-oriented interfaces that make ambulance and urgent-care resources easier to access.
