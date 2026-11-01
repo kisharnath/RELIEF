@@ -23,6 +23,7 @@ const ASSET_PATHS = [
   'assets/js/session-guard.js',
   'assets/js/main.js',
   'assets/js/firstaid.js',
+  'assets/js/request-resilience.js',
   'assets/js/hospitals.js',
   'assets/js/facility-schema.js',
   'assets/js/app-enhancements.js',
